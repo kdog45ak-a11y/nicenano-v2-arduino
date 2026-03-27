@@ -16,8 +16,8 @@
           "category": "Contributed",
           "url": "https://github.com/kdog45ak-a11y/nicenano-v2-arduino/releases/download/v1.0.0/nicenano-v2-arduino-1.0.0.zip",
           "archiveFileName": "nicenano-v2-arduino-1.0.0.zip",
-          "checksum": "SHA-256:c670e141c681106d185c419f45753f9d7e06fed3163678e558d8b4dc7b665caa",
-          "size": "8008",
+          "checksum": "SHA-256:d00499fd027aeb2a3d60819c5dad2918f3172e28ed9697b06e5e351c38722fd2",
+          "size": "9017",
           "boards": [
             { "name": "nice!nano v2 (pin fixed)" }
           ],

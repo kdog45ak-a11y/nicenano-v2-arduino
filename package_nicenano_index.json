@@ -1,0 +1,41 @@
+{
+  "packages": [
+    {
+      "name": "nicenano",
+      "maintainer": "kdog45ak-a11y",
+      "websiteURL": "https://github.com/kdog45ak-a11y/nicenano-v2-arduino",
+      "email": "",
+      "help": {
+        "online": "https://github.com/kdog45ak-a11y/nicenano-v2-arduino"
+      },
+      "platforms": [
+        {
+          "name": "nice!nano v2 Boards",
+          "architecture": "nrf52",
+          "version": "1.0.0",
+          "category": "Contributed",
+          "url": "https://github.com/kdog45ak-a11y/nicenano-v2-arduino/releases/download/v1.0.0/nicenano-v2-arduino-1.0.0.zip",
+          "archiveFileName": "nicenano-v2-arduino-1.0.0.zip",
+          "checksum": "SHA-256:c670e141c681106d185c419f45753f9d7e06fed3163678e558d8b4dc7b665caa",
+          "size": "8008",
+          "boards": [
+            { "name": "nice!nano v2 (pin fixed)" }
+          ],
+          "toolsDependencies": [
+            {
+              "packager": "adafruit",
+              "name": "arm-none-eabi-gcc",
+              "version": "9-2019q4"
+            },
+            {
+              "packager": "adafruit",
+              "name": "CMSIS",
+              "version": "5.7.0"
+            }
+          ]
+        }
+      ],
+      "tools": []
+    }
+  ]
+}

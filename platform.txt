@@ -1,13 +1,11 @@
-# nice!nano v2 (pin fixed) — Arduino Board Package
+# nice!nano v2 (pin fixed) — Self-contained Arduino Board Package
 # Based on Adafruit nRF52 platform (LGPL 2.1)
 #
-# Requires Adafruit nRF52 boards to be installed.
-# Core, libraries, and upload tool are sourced from the Adafruit platform.
-# {build.core.path} resolves to <adafruit_nrf52_platform>/cores/nRF5
-# so {build.core.path}/../.. reaches the Adafruit platform root.
+# All core files, libraries, and upload tools are bundled in this package.
+# No separate Adafruit nRF52 BSP installation required.
 
 name=nice!nano v2 Boards
-version=1.0.0
+version=2.0.0
 
 # Compile variables
 # -----------------
@@ -60,12 +58,11 @@ compiler.elf2hex.extra_flags=
 compiler.arm.cmsis.c.flags="-I{runtime.tools.CMSIS-5.7.0.path}/CMSIS/Core/Include/" "-I{runtime.tools.CMSIS-5.7.0.path}/CMSIS/DSP/Include/"
 compiler.arm.cmsis.ldflags="-L{runtime.tools.CMSIS-5.7.0.path}/CMSIS/DSP/Lib/GCC/" -larm_cortexM4lf_math
 
-# Core and Nordic paths resolve through build.core.path (= <adafruit_nrf52>/cores/nRF5)
+# All paths are local — {runtime.platform.path} is this package
 rtos.path={build.core.path}/freertos
 nordic.path={build.core.path}/nordic
 
-# TinyUSB header: step up two levels from cores/nRF5 to reach the Adafruit platform root
-build.flags.nrf= -DSOFTDEVICE_PRESENT -DARDUINO_NRF52_ADAFRUIT -DNRF52_SERIES -DDX_CC_TEE -DLFS_NAME_MAX=64 {compiler.optimization_flag} {build.debug_flags} {build.logger_flags} {build.sysview_flags} {compiler.arm.cmsis.c.flags} "-I{runtime.platform.path}/variants/{build.variant}" "-I{nordic.path}" "-I{nordic.path}/nrfx" "-I{nordic.path}/nrfx/hal" "-I{nordic.path}/nrfx/mdk" "-I{nordic.path}/nrfx/soc" "-I{nordic.path}/nrfx/drivers/include" "-I{nordic.path}/nrfx/drivers/src" "-I{nordic.path}/softdevice/{build.sd_name}_nrf52_{build.sd_version}_API/include" "-I{nordic.path}/softdevice/{build.sd_name}_nrf52_{build.sd_version}_API/include/nrf52" "-I{rtos.path}/Source/include" "-I{rtos.path}/config" "-I{rtos.path}/portable/GCC/nrf52" "-I{rtos.path}/portable/CMSIS/nrf52" "-I{build.core.path}/sysview/SEGGER" "-I{build.core.path}/sysview/Config" "-I{build.core.path}/../../libraries/Adafruit_TinyUSB_Arduino/src/arduino"
+build.flags.nrf= -DSOFTDEVICE_PRESENT -DARDUINO_NRF52_ADAFRUIT -DNRF52_SERIES -DDX_CC_TEE -DLFS_NAME_MAX=64 {compiler.optimization_flag} {build.debug_flags} {build.logger_flags} {build.sysview_flags} {compiler.arm.cmsis.c.flags} "-I{nordic.path}" "-I{nordic.path}/nrfx" "-I{nordic.path}/nrfx/hal" "-I{nordic.path}/nrfx/mdk" "-I{nordic.path}/nrfx/soc" "-I{nordic.path}/nrfx/drivers/include" "-I{nordic.path}/nrfx/drivers/src" "-I{nordic.path}/softdevice/{build.sd_name}_nrf52_{build.sd_version}_API/include" "-I{nordic.path}/softdevice/{build.sd_name}_nrf52_{build.sd_version}_API/include/nrf52" "-I{rtos.path}/Source/include" "-I{rtos.path}/config" "-I{rtos.path}/portable/GCC/nrf52" "-I{rtos.path}/portable/CMSIS/nrf52" "-I{build.core.path}/sysview/SEGGER" "-I{build.core.path}/sysview/Config" "-I{runtime.platform.path}/libraries/Adafruit_TinyUSB_Arduino/src/arduino"
 
 # Compile patterns
 # ----------------
@@ -105,14 +102,11 @@ recipe.output.tmp_file={build.project_name}.hex
 recipe.output.save_file={build.project_name}.{build.variant}.hex
 
 # ------------------------------------------------
-# adafruit-nrfutil for uploading
-# Binary is sourced from the installed Adafruit nRF52 platform.
-# {build.core.path} = <adafruit_nrf52>/cores/nRF5
-# {build.core.path}/../.. = <adafruit_nrf52> platform root
+# adafruit-nrfutil for uploading (bundled locally)
 # ------------------------------------------------
 tools.nrfutil.cmd=adafruit-nrfutil
-tools.nrfutil.cmd.windows={build.core.path}/../../tools/adafruit-nrfutil/win32/adafruit-nrfutil.exe
-tools.nrfutil.cmd.macosx={build.core.path}/../../tools/adafruit-nrfutil/macos/adafruit-nrfutil
+tools.nrfutil.cmd.windows={runtime.platform.path}/tools/adafruit-nrfutil/win32/adafruit-nrfutil.exe
+tools.nrfutil.cmd.macosx={runtime.platform.path}/tools/adafruit-nrfutil/macos/adafruit-nrfutil
 
 tools.nrfutil.upload.params.verbose=--verbose
 tools.nrfutil.upload.params.quiet=
@@ -120,9 +114,8 @@ tools.nrfutil.upload.pattern="{cmd}" {upload.verbose} dfu serial -pkg "{build.pa
 
 # ---------------------------------------------------
 # Bootloader burning (requires J-Link / nrfjprog)
-# Bootloader files sourced from Adafruit platform root.
 # ---------------------------------------------------
-tools.bootburn.bootloader.file={build.core.path}/../../bootloader/{build.variant}/{build.variant}_bootloader-0.9.1_{build.sd_name}_{build.sd_version}
+tools.bootburn.bootloader.file={runtime.platform.path}/bootloader/{build.variant}/{build.variant}_bootloader-0.9.1_{build.sd_name}_{build.sd_version}
 
 tools.bootburn.bootloader.params.verbose=
 tools.bootburn.bootloader.params.quiet=
@@ -143,4 +136,4 @@ debug.toolchain.prefix=arm-none-eabi-
 debug.server=openocd
 debug.server.openocd.path={runtime.tools.openocd-0.11.0-arduino2.path}/bin/openocd
 debug.server.openocd.scripts_dir={runtime.tools.openocd-0.11.0-arduino2.path}/share/openocd/scripts/
-debug.server.openocd.script={build.core.path}/../../{build.openocdscript}
+debug.server.openocd.script={runtime.platform.path}/{build.openocdscript}

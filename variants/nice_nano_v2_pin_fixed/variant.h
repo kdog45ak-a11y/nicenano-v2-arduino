@@ -37,6 +37,8 @@ extern "C"
 
 // LEDs
 #define PIN_LED              (PINS_COUNT) // no LED on this board
+#define LED_BLUE             (PINS_COUNT) // required by Bluefruit52Lib; no physical LED
+#define LED_RED              (PINS_COUNT) // required by some Adafruit libs; no physical LED
 #define LED_PWR              (PINS_COUNT) // no LED_PWR
 #define PIN_NEOPIXEL         (PINS_COUNT) // no neopixel
 #define NEOPIXEL_NUM         0

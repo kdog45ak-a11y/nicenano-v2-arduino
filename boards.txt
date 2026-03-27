@@ -1,0 +1,64 @@
+##############################################################
+# nice!nano v2 (pin fixed)
+#
+# Pin mapping follows the physical nice!nano V2 board layout.
+# D0=P0.08 (RX), D1=P0.06 (TX) — matches the board silkscreen.
+# This is the correct mapping for SadEye hardware.
+#
+# Requires Adafruit nRF52 to be installed (for core and tools).
+##############################################################
+
+nicenanov2pf.name=nice!nano v2 (pin fixed)
+
+nicenanov2pf.vid.0=0x239A
+nicenanov2pf.pid.0=0x00B3
+nicenanov2pf.vid.1=0x239A
+nicenanov2pf.pid.1=0x8029
+nicenanov2pf.vid.2=0x239A
+nicenanov2pf.pid.2=0x802A
+nicenanov2pf.vid.3=0x239A
+nicenanov2pf.pid.3=0x802B
+
+nicenanov2pf.bootloader.tool=bootburn
+nicenanov2pf.upload.tool=nrfutil
+nicenanov2pf.upload.protocol=nrfutil
+nicenanov2pf.upload.use_1200bps_touch=true
+nicenanov2pf.upload.wait_for_upload_port=true
+nicenanov2pf.upload.maximum_size=815104
+nicenanov2pf.upload.maximum_data_size=237568
+
+nicenanov2pf.build.mcu=cortex-m4
+nicenanov2pf.build.f_cpu=64000000
+nicenanov2pf.build.board=nice_nano_v2
+nicenanov2pf.build.core=adafruit:nRF5
+nicenanov2pf.build.variant=nice_nano_v2_pin_fixed
+nicenanov2pf.build.usb_manufacturer="nice!"
+nicenanov2pf.build.usb_product="Nice!Nano V2"
+nicenanov2pf.build.extra_flags=-DNRF52840_XXAA {build.flags.usb}
+nicenanov2pf.build.ldscript=nrf52840_s140_v6.ld
+nicenanov2pf.build.openocdscript=scripts/openocd/daplink_nrf52.cfg
+nicenanov2pf.build.vid=0x239A
+nicenanov2pf.build.pid=0x8029
+nicenanov2pf.build.uf2_family=0xADA52840
+
+nicenanov2pf.menu.softdevice.s140v6=S140 6.1.1
+nicenanov2pf.menu.softdevice.s140v6.build.sd_name=s140
+nicenanov2pf.menu.softdevice.s140v6.build.sd_version=6.1.1
+nicenanov2pf.menu.softdevice.s140v6.build.sd_fwid=0x00B6
+
+nicenanov2pf.menu.debug.l0=Level 0 (Release)
+nicenanov2pf.menu.debug.l0.build.debug_flags=-DCFG_DEBUG=0
+nicenanov2pf.menu.debug.l1=Level 1 (Error Message)
+nicenanov2pf.menu.debug.l1.build.debug_flags=-DCFG_DEBUG=1
+nicenanov2pf.menu.debug.l2=Level 2 (Full Debug)
+nicenanov2pf.menu.debug.l2.build.debug_flags=-DCFG_DEBUG=2
+nicenanov2pf.menu.debug.l3=Level 3 (Segger SystemView)
+nicenanov2pf.menu.debug.l3.build.debug_flags=-DCFG_DEBUG=3
+nicenanov2pf.menu.debug.l3.build.sysview_flags=-DCFG_SYSVIEW=1
+
+nicenanov2pf.menu.debug_output.serial=Serial
+nicenanov2pf.menu.debug_output.serial.build.logger_flags=-DCFG_LOGGER=0
+nicenanov2pf.menu.debug_output.serial1=Serial1
+nicenanov2pf.menu.debug_output.serial1.build.logger_flags=-DCFG_LOGGER=1 -DCFG_TUSB_DEBUG=CFG_DEBUG
+nicenanov2pf.menu.debug_output.rtt=Segger RTT
+nicenanov2pf.menu.debug_output.rtt.build.logger_flags=-DCFG_LOGGER=2 -DCFG_TUSB_DEBUG=CFG_DEBUG -DSEGGER_RTT_MODE_DEFAULT=SEGGER_RTT_MODE_BLOCK_IF_FIFO_FULL

@@ -1,14 +1,15 @@
+menu.softdevice=SoftDevice
+menu.debug=Debug
+menu.debug_output=Debug Output
+
 ##############################################################
-# nice!nano v2 (pin fixed)
+# nice!nano v2
 #
 # Pin mapping follows the physical nice!nano V2 board layout.
 # D0=P0.08 (RX), D1=P0.06 (TX) — matches the board silkscreen.
-# This is the correct mapping for SadEye hardware.
-#
-# Requires Adafruit nRF52 to be installed (for core and tools).
 ##############################################################
 
-nicenanov2pf.name=nice!nano v2 (pin fixed)
+nicenanov2pf.name=nice!nano v2
 
 nicenanov2pf.vid.0=0x239A
 nicenanov2pf.pid.0=0x00B3

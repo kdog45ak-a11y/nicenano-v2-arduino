@@ -12,14 +12,14 @@
         {
           "name": "nice!nano v2 Boards",
           "architecture": "nrf52",
-          "version": "2.0.0",
+          "version": "2.0.1",
           "category": "Contributed",
-          "url": "https://github.com/kdog45ak-a11y/nicenano-v2-arduino/releases/download/v2.0.0/nicenano-v2-arduino-2.0.0.zip",
-          "archiveFileName": "nicenano-v2-arduino-2.0.0.zip",
-          "checksum": "SHA-256:30d14ff5fe0b616116bc0dd020b478f5a05fe9b64d5951f94349829b9304f3c5",
-          "size": "17965082",
+          "url": "https://github.com/kdog45ak-a11y/nicenano-v2-arduino/releases/download/v2.0.1/nicenano-v2-arduino-2.0.1.zip",
+          "archiveFileName": "nicenano-v2-arduino-2.0.1.zip",
+          "checksum": "SHA-256:150c0669a8146b3b15e8f7ded02c8e22d74a5e56f687d0fabf7749b44df435c6",
+          "size": "17965032",
           "boards": [
-            { "name": "nice!nano v2 (pin fixed)" }
+            { "name": "nice!nano v2" }
           ],
           "toolsDependencies": [
             {
